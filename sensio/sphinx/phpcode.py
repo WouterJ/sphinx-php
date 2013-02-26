@@ -73,7 +73,8 @@ def php_method_role(typ, rawtext, text, lineno, inliner, options={}, content=[])
                  'exactly once' % (typ, base_url))
         full_url = base_url + utils.escape(full_class)
     if not has_explicit_title:
-        title = method + '()'
+        class_name = full_class.split('\\')[-1]
+        title = class_name + '::' + method + '()'
     list = [nodes.reference(title, title, internal=False, refuri=full_url, reftitle=full_class + '::' + method + '()')]
     pnode = nodes.literal('', '', *list)
     return [pnode], []
